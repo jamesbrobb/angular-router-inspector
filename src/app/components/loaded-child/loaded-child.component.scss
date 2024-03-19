@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  padding: 5px 5px 0;
+  margin-bottom: 5px;
+  border: 1px solid var(--mat-divider-color);
+
+  .label {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  mat-checkbox {
+    margin-bottom: 10px;
+  }
+}

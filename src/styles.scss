@@ -1,0 +1,31 @@
+@use "normalize.css";
+@use '@angular/material' as mat;
+@use "@jamesbenrobb/styles/theme" as theme;
+@use "@jamesbenrobb/app-shell/styles/jbr-app-shell-styles" as app-shell;
+
+
+:root {
+  --mat-form-field-container-height: 40px;
+  --mat-form-field-filled-label-display: block;
+  --mat-form-field-container-vertical-padding: 10px;
+  --mat-form-field-filled-with-label-container-padding-top: 20px;
+  --mat-form-field-filled-with-label-container-padding-bottom: 3px;
+  --mat-form-field-container-text-line-height: 24px;
+  --mat-form-field-container-text-size: 15px;
+  --mdc-filled-text-field-label-text-size: 15px;
+}
+
+@include app-shell.setJBRAppShellVars($side-menu-width: 200px);
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+

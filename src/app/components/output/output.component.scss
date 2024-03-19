@@ -1,0 +1,63 @@
+:host {
+  display: block;
+
+  --list-direction: var(--output-list-direction, column);
+
+  .entries {
+    display: flex;
+    flex-direction: var(--list-direction);
+    gap: 25px;
+  }
+
+  .entry {
+    font-size: 16px;
+    opacity: 0.2;
+    transition: opacity 300ms;
+
+    .lower {
+      opacity: 0.7;
+    }
+  }
+
+  .routerevent {
+    .entry.routerevent {
+      opacity: 1;
+    }
+  }
+
+  .activationevent {
+    .entry.activationevent {
+      opacity: 1;
+    }
+  }
+
+  .guard.canmatch {
+    .entry.guard.canmatch {
+      opacity: 1;
+    }
+  }
+
+  .guard.canactivate {
+    .entry.guard.canactivate {
+      opacity: 1;
+    }
+  }
+
+  .guard.canactivatechild {
+    .entry.guard.canactivatechild {
+      opacity: 1;
+    }
+  }
+
+  .guard.candeactivate {
+    .entry.guard.candeactivate {
+      opacity: 1;
+    }
+  }
+
+  .resolve {
+    .entry.resolve {
+      opacity: 1;
+    }
+  }
+}

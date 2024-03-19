@@ -1,8 +1,21 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {ApplicationConfig} from '@angular/core';
+import {getJBRAppShellProviders} from "@jamesbenrobb/app-shell";
+import {getJBRAppShellAngularRouterProviders} from "@jamesbenrobb/app-shell-routing-adaptors";
 
 import { routes } from './app.routes';
+import {convertRoutes} from "./routes/route-to-nav.convertor";
+import {routeConfigs} from "./routes/route.config";
+
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [
+    getJBRAppShellProviders({
+      displayBreadcrumbs: false,
+      displaySearchInput: false
+    }),
+    getJBRAppShellAngularRouterProviders(
+      routes,
+      convertRoutes(routeConfigs)
+    )
+  ]
 };

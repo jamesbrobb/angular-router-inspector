@@ -1,0 +1,92 @@
+<jbr-content-hide [startOpen]="true" title="Settings">
+
+    @if(data$ | async; as data) {
+    <form #form="ngForm">
+        <div class="choices">
+            <mat-checkbox [(ngModel)]="data.resetOnStart" name="resetOnStart">
+                Reset output on NavigationStart
+            </mat-checkbox>
+
+            <mat-checkbox [(ngModel)]="data.onlyDelayFilteredGuards" name="onlyDelayFilteredGuards">
+                Only delay filtered guards
+            </mat-checkbox>
+
+            <mat-checkbox [(ngModel)]="data.failResolvers" name="failResolvers">
+                Fail resolvers
+            </mat-checkbox>
+        </div>
+        <div class="controls">
+
+            <div class="group">
+                <mat-form-field [subscriptSizing]="'dynamic'" appearance="outline" floatLabel="always">
+                    <mat-label>Guard delay</mat-label>
+                    <input matInput type="number" min="0" max="5000"
+                           name="guardDelay"
+                           [(ngModel)]="data.guardDelay"/>
+                </mat-form-field>
+
+                <mat-form-field [subscriptSizing]="'dynamic'" appearance="outline" floatLabel="always">
+                    <mat-label>+ random</mat-label>
+                    <input matInput type="number" min="0" max="5000"
+                           name="guardDelayRandom"
+                           [(ngModel)]="data.guardDelayRandom"/>
+                </mat-form-field>
+            </div>
+
+            <div class="group">
+                <mat-form-field [subscriptSizing]="'dynamic'" appearance="outline" floatLabel="always">
+                    <mat-label>Resolve delay</mat-label>
+                    <input matInput type="number" min="0" max="5000"
+                           name="resolveDelay"
+                           [(ngModel)]="data.resolveDelay"/>
+                </mat-form-field>
+
+                <mat-form-field [subscriptSizing]="'dynamic'" appearance="outline" floatLabel="always">
+                    <mat-label>+ random</mat-label>
+                    <input matInput type="number" min="0" max="5000"
+                           name="resolveDelayRandom"
+                           [(ngModel)]="data.resolveDelayRandom"/>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field [subscriptSizing]="'dynamic'" appearance="outline" floatLabel="always">
+                <mat-label>Filter Type</mat-label>
+                <mat-select multiple
+                            name="selectedTypeFilters"
+                            placeholder="All types"
+                            [(ngModel)]="data.selectedTypeFilters">
+                    @for (option of typeFilterOptions; track $index) {
+                        <mat-option [value]="option">{{option}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field [subscriptSizing]="'dynamic'" appearance="outline" floatLabel="always">
+                <mat-label>Filter Guard Type</mat-label>
+                <mat-select multiple
+                            name="selectedGuardFilters"
+                            placeholder="All types"
+                            [(ngModel)]="data.selectedGuardFilters"
+                            [disabled]="!data.selectedTypeFilters.includes('Guard')">
+                    @for (option of guardFilterOptions; track $index) {
+                        <mat-option [value]="option">{{option}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field [subscriptSizing]="'dynamic'" appearance="outline" floatLabel="always">
+                <mat-label>Guards to fail</mat-label>
+                <mat-select multiple
+                            name="guardsToFail"
+                            placeholder="None"
+                            [(ngModel)]="data.guardsToFail">
+                    @for (result of settings.guardResults; track $index) {
+                        <mat-option [value]="result">{{result.path}} - {{result.guardType}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+    </form>
+    }
+</jbr-content-hide>

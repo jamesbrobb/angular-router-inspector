@@ -1,0 +1,41 @@
+
+@if(messages$|async; as messages) {
+<div class="entries" [ngClass]="selectedFilters$ | async">
+@for (msg of messages; track msg; let i = $index;) {
+    @if (msg.type === 'NavigationStart') {
+        <div class="entry">================================</div>
+    }
+    <div class="entry {{msg.trigger|lowercase}} {{msg.type|lowercase}}">
+        <span class="lower">{{i + 1}}. </span>
+        <span class="details">
+            <span class="trigger"><strong>{{msg.trigger}}</strong></span>
+            <span> - <em>{{msg.type}}</em></span>
+            @if(msg.createdBy !== undefined) {
+                <span>
+                    <span class="lower"> --- declared in: </span>
+                    <span>{{msg.createdBy || '""'}}</span>
+                </span>
+            }
+            @if(msg.currentPath) {
+                <span>
+                    <span class="lower"> --- {{msg.type === 'CanDeactivate' ? 'from' : 'to'}}: </span>
+                    <span>{{msg.currentPath.startsWith('/') ? '' : '/'}}{{msg.currentPath}}</span>
+                </span>
+            }
+            @if(msg.success !== undefined) {
+                <span>
+                    <span class="lower"> --- <strong><em>{{msg.success ? 'succeeded' : 'failed'}}</em></strong></span>
+                    @if(msg.executionTime !== undefined) {
+                        <span class="lower"><em> in {{msg.executionTime}}ms</em></span>
+                    }
+                </span>
+            }
+        </span>
+    </div>
+
+    @if (['NavigationEnd', 'NavigationError', 'NavigationCancel', 'NavigationSkipped'].indexOf(msg.type) !== -1) {
+        <div class="entry">================================</div>
+    }
+}
+</div>
+}

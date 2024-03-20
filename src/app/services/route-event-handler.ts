@@ -44,12 +44,6 @@ export class RouteEventHandler {
                     this.navigating = false;
                 }
 
-                if(event instanceof RouteConfigLoadStart ||
-                    event instanceof RouteConfigLoadEnd ||
-                    event instanceof RoutesRecognized) {
-                    console.log(this.#router.getCurrentNavigation());
-                }
-
                 const type: LoggerMsgType = EventType[event.type] as LoggerMsgType;
 
                 let currentPath: string = '',

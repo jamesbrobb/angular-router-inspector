@@ -10,8 +10,7 @@ import {routeConfigs} from "./routes/route.config";
 export const appConfig: ApplicationConfig = {
   providers: [
     getJBRAppShellProviders({
-      displayBreadcrumbs: false,
-      displaySearchInput: false
+      displayBreadcrumbs: false
     }),
     getJBRAppShellAngularRouterProviders(
       routes,
